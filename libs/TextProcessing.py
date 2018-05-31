@@ -11,8 +11,11 @@ class TextProcessing():
     def filter_printable(self,data):
         filtered = filter(lambda x: x in TextProcessing.printable, data)
         return filtered
-    def filter_google_specific(self,data):
-        filtered = re.sub( r'^\D{3}\s+\d{1,2}, \d{4} -',"", data, re.M|re.I)
+    def filter_date(self,data):
+        filtered = re.sub( r'\D{3}\s+\d{1,2}, \d{4}',"", data, re.M|re.I)
+        return filtered
+    def filter_integer(self,data):
+        filtered = re.sub( r'[0-9]*',"", data, re.M|re.I)
         return filtered
     def tokenize(self,data):
         tokens=word_tokenize(data.lower())
